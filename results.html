@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Detection Results</title>
+</head>
+<body>
+    <h1>Detection Results</h1>
+
+    {% for result in results %}
+        <div>
+            <p><strong>Email Text:</strong></p>
+            <p>{{ result.email_text }}</p>
+
+            <p><strong>Machine Learning Result:</strong> {{ result.ml_result }}</p>
+
+            <p><strong>Phishing Traits Detected:</strong></p>
+            {% if result.phishing_traits %}
+                <ul>
+                    {% for trait in result.phishing_traits %}
+                        <li>{{ trait }}</li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p>No suspicious traits detected.</p>
+            {% endif %}
+            <hr>
+        </div>
+    {% endfor %}
+
+    <a href="/">Go Back</a>
+    <br>
+    <a href="/dashboard">View Dashboard</a>
+</body>
+</html>

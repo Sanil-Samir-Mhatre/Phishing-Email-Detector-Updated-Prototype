@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Phishing Detector</title>
+</head>
+<body>
+    <h1>Email Phishing Detector</h1>
+    <form method="post" action="/detect">
+        <label for="email_texts">Paste multiple emails here:</label>
+        <br>
+        <textarea name="email_texts" id="email_texts" placeholder="Enter emails here, separated by '---' or blank lines..." rows="15" cols="60"></textarea>
+        <br>
+        <small>Separate emails using either <code>---</code> or two blank lines.</small>
+        <br>
+        <button type="submit">Detect Phishing</button>
+    </form>
+    <br>
+    <a href="/dashboard">View Dashboard</a>
+</body>
+</html>

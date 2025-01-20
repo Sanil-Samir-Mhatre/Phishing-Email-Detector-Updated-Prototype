@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flagged Emails Dashboard</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            text-align: left;
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+        th {
+            background-color: #f4f4f4;
+            font-weight: bold;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+        .traits {
+            color: #b30000;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>Flagged Emails Dashboard</h1>
+
+    {% if flagged_emails %}
+        <table>
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Email Text</th>
+                    <th>Phishing Traits Detected</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for email in flagged_emails %}
+                    <tr>
+                        <td>{{ loop.index }}</td> <!-- Use loop.index for a 1-based index -->
+                        <td>{{ email.email_text }}</td>
+                        <td>
+                            {% if email.traits %}
+                                <ul>
+                                    {% for trait in email.traits %}
+                                        <li class="traits">{{ trait }}</li>
+                                    {% endfor %}
+                                </ul>
+                            {% else %}
+                                <span>No phishing traits detected.</span>
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>No flagged emails found yet.</p>
+    {% endif %}
+
+    <br>
+    <a href="/">Go Back to Home</a>
+</body>
+</html>
